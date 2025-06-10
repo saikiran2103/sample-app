@@ -2,18 +2,20 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: production-deployment
+  namespace: prod
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: production-app
+      app: sample-app
   template:
     metadata:
       labels:
-        app: production-app
+        app: sample-app
     spec:
       containers:
-      - name: production-container
+      - name: sample-app
         image: us-west1-docker.pkg.dev/qwiklabs-gcp-01-a7b30c338b9f/my-repository/sample-app:v1.0
         ports:
         - containerPort: 8080
+
