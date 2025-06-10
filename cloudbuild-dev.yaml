@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 options:
   logging: CLOUD_LOGGING_ONLY
 
@@ -16,4 +17,26 @@ steps:
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-west1-a'
   - 'CLOUDSDK_CONTAINER_CLUSTER=hello-cluster'
+=======
+steps:
+  - name: 'gcr.io/cloud-builders/go'
+    id: 'Compile application'
+    env: ['GOPATH=/gopath']
+    args: ['build', '-o', 'main', 'main.go']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    id: 'Build Docker image'
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/qwiklabs-gcp-01-a7b30c338b9f/my-repository/hello-cloudbuild:v1.0', '.']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    id: 'Push Docker image'
+    args: ['push', 'us-central1-docker.pkg.dev/qwiklabs-gcp-01-a7b30c338b9f/my-repository/hello-cloudbuild:v1.0']
+
+  - name: 'gcr.io/cloud-builders/kubectl'
+    id: 'Deploy'
+    args: ['-n', 'dev', 'apply', '-f', 'dev/deployment.yaml']
+    env:
+    - 'CLOUDSDK_COMPUTE_REGION=us-central1-f'
+    - 'CLOUDSDK_CONTAINER_CLUSTER=hello-cluster'
+>>>>>>> Stashed changes
 
