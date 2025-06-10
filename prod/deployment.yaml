@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: sample-app
-        image: us-west1-docker.pkg.dev/qwiklabs-gcp-01-a7b30c338b9f/my-repository/sample-app:v1.0
+        image: us-west1-docker.pkg.dev/qwiklabs-gcp-01-a7b30c338b9f/my-repository/sample-app:v2.0
         ports:
         - containerPort: 8080
 
