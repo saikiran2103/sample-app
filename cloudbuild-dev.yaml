@@ -1,9 +1,12 @@
+options:
+  logging: CLOUD_LOGGING_ONLY
+
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/qwiklabs-gcp-01-a7b30c338b9f/sample-app:v1.0', '.']
+  args: ['build', '-t', 'us-west1-docker.pkg.dev/qwiklabs-gcp-01-a7b30c338b9f/my-repository/sample-app:v1.0', '.']
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/qwiklabs-gcp-01-a7b30c338b9f/sample-app:v1.0']
+  args: ['push', 'us-west1-docker.pkg.dev/qwiklabs-gcp-01-a7b30c338b9f/my-repository/sample-app:v1.0']
 
 - name: 'gcr.io/cloud-builders/kubectl'
   args:
@@ -11,6 +14,6 @@ steps:
   - '-f'
   - 'dev/deployment.yaml'
   env:
-  - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=standard-cluster-1'
+  - 'CLOUDSDK_COMPUTE_ZONE=us-west1-a'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=hello-cluster'
 
