@@ -4,18 +4,18 @@ metadata:
   name: development-deployment
   namespace: dev
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: development-app
+      app: sample-app
   template:
     metadata:
       labels:
-        app: development-app
+        app: sample-app
     spec:
       containers:
-        - name: sample-app-container
-          image: us-west1-docker.pkg.dev/qwiklabs-gcp-01-a7b30c338b9f/my-repository/sample-app:v1.0
-          ports:
-            - containerPort: 8080
+      - name: sample-app
+        image: gcr.io/qwiklabs-gcp-01-a7b30c338b9f/sample-app:v1.0
+        ports:
+        - containerPort: 8080
 
